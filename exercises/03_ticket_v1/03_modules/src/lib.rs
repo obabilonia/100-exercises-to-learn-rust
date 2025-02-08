@@ -1,8 +1,9 @@
 mod helpers {
     // TODO: Make this code compile, either by adding a `use` statement or by using
     //  the appropriate path to refer to the `Ticket` struct.
+    use super::Ticket;
 
-    fn create_todo_ticket(title: String, description: String) -> Ticket {
+    pub fn create_todo_ticket(title: String, description: String) -> Ticket {
         Ticket::new(title, description, "To-Do".into())
     }
 }
@@ -37,4 +38,15 @@ impl Ticket {
             status,
         }
     }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::helpers::create_todo_ticket;
+
+    #[test]
+    fn title_cannot_be_empty() {
+        create_todo_ticket("titulo".into(), "description".into());
+    }
+
 }
